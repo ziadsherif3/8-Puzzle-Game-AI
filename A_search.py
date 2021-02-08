@@ -44,13 +44,41 @@ class Board():
         if self.cost_type == None:
             return None
         else:
-            pass
+            neighbors = []
+            
+            for row_i in range(len(self.confg)):
+                if 0 in self.confg[row_i]:
+                    r = row_i
+                    c = self.confg[row_i].index(0)
+                    break
+            
+            if (r - 1) >= 0: # Move upwards.
+                new_neighbor = [[x, y, z] for x, y, z in self.confg]
+                new_neighbor[r - 1][c], new_neighbor[r][c] = new_neighbor[r][c], new_neighbor[r - 1][c]
+                neighbors.insert(len(neighbors), Board(new_neighbor, self.cost_type, self, self.cost + 1))
+                
+            if (r + 1) <= 2: # Move downwards.
+                new_neighbor = [[x, y, z] for x, y, z in self.confg]
+                new_neighbor[r + 1][c], new_neighbor[r][c] = new_neighbor[r][c], new_neighbor[r + 1][c]
+                neighbors.insert(len(neighbors), Board(new_neighbor, self.cost_type, self, self.cost + 1))
+                
+            if (c - 1) >= 0: # Move to the left.
+                new_neighbor = [[x, y, z] for x, y, z in self.confg]
+                new_neighbor[r][c - 1], new_neighbor[r][c] = new_neighbor[r][c], new_neighbor[r][c - 1]
+                neighbors.insert(len(neighbors), Board(new_neighbor, self.cost_type, self, self.cost + 1))
+            
+            if (c + 1) <= 2: # Move to the right.
+                new_neighbor = [[x, y, z] for x, y, z in self.confg]
+                new_neighbor[r][c + 1], new_neighbor[r][c] = new_neighbor[r][c], new_neighbor[r][c + 1]
+                neighbors.insert(len(neighbors), Board(new_neighbor, self.cost_type, self, self.cost + 1))
+                
+            return neighbors
     
     def __lt__(self, other):
-        pass
+        return self.total_cost < other.total_cost
     
     def __eq__(self, other):
-        pass
+        return self.confg == other.confg
     
     def __str__(self):
         return f'{self.confg}'
