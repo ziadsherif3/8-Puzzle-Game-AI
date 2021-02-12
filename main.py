@@ -35,19 +35,17 @@ def main():
     board1d = input_configuration()
     board2d = [[x, y, z] for x, y, z in [board1d[:3], board1d[3:6], board1d[6:]]]
     
-    # print("Choose the search algorithm:\n1) BFS\n2) DFS\n3) A*")
-    # choice = input().split(" ")
+    print("Choose the search algorithm:\n1) BFS\n2) A*")
+    choice = input().split(" ")
     
-    # while (len(choice) != 1) or (not choice[0].isdigit()) or (int(choice[0]) < 1) or (int(choice[0]) > 3):
-    #     print("Invalid input! Please retry.")
-    #     choice = input().split(" ")
+    while (len(choice) != 1) or (not choice[0].isdigit()) or (int(choice[0]) < 1) or (int(choice[0]) > 2):
+        print("Invalid input! Please retry.")
+        choice = input().split(" ")
     
-    # if choice[0] == '1': # Call the BFS function.
-    #     pass
-    # elif choice[0] == '2': # Call the DFS function.
-    #     pass
-    # else: # Call the A* function.
-    A_search.search(board2d)
+    if choice[0] == '1': # Call the BFS function.
+        pass
+    elif choice[0] == '2': # Call the A* function.
+        A_search.search(board2d)
 
 if __name__ == "__main__":
     main()
