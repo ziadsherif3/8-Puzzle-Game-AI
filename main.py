@@ -1,4 +1,6 @@
 import A_search
+import bfs
+
 
 def valid_board(board):
     try:
@@ -30,11 +32,10 @@ def input_configuration():
     
     return list(map(int, board_conf))
 
+
 def main():
     # Use whichever list is most convenient for you.
-    board1d = input_configuration()
-    board2d = [[x, y, z] for x, y, z in [board1d[:3], board1d[3:6], board1d[6:]]]
-    
+
     print("Choose the search algorithm:\n1) BFS\n2) A*")
     choice = input().split(" ")
     
@@ -42,10 +43,14 @@ def main():
         print("Invalid input! Please retry.")
         choice = input().split(" ")
     
-    if choice[0] == '1': # Call the BFS function.
+    if choice[0] == '1':  # Call the BFS function.
+        bfs.BfsCalculate()
         pass
-    elif choice[0] == '2': # Call the A* function.
+    elif choice[0] == '2':  # Call the A* function.
+        board1d = input_configuration()
+        board2d = [[x, y, z] for x, y, z in [board1d[:3], board1d[3:6], board1d[6:]]]
         A_search.search(board2d)
+
 
 if __name__ == "__main__":
     main()

@@ -145,13 +145,13 @@ class Searcher(object):
             print("No solution found")
 
 
-if __name__ == "__main__":
+def BfsCalculate():
     print("Calculating Solutions..")
     start2 = Node([2, 0, 1, 4, 5, 3, 8, 7, 6])
     start = Node([1, 2, 5, 3, 4, 0, 6, 7, 8])
     goal = Node([0, 1, 2, 3, 4, 5, 6, 7, 8])
 
-    search = Searcher(start2, goal)
+    search = Searcher(start, goal)
 
     start_time = time()
     search.bfs()
